@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<title>Уянгад ❤️</title>
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family:"Segoe UI", Arial, sans-serif;
+}
+
+/* card */
+.card{
+  background:white;
+  padding:45px 40px;
+  border-radius:22px;
+  text-align:left;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+  max-width:520px;
+  max-height:85vh;
+  overflow-y:auto;
+  animation:fade 1.8s ease;
+}
+
+/* image */
+img{
+  width:240px;
+  border-radius:16px;
+  display:block;
+  margin:0 auto 25px auto;
+}
+
+/* title */
+h1{
+  text-align:center;
+  color:#e8436f;
+  margin-bottom:25px;
+  letter-spacing:1px;
+  animation:titleFade 2.2s ease forwards;
+  opacity:0;
+}
+
+/* paragraphs */
+p{
+  font-size:18px;
+  color:#333;
+  line-height:1.9;
+  margin-bottom:18px;
+}
+
+/* signature */
+.signature{
+  text-align:right;
+  margin-top:30px;
+  font-weight:600;
+  color:#e8436f;
+  font-size:18px;
+}
+
+/* animations */
+@keyframes fade{
+  from{opacity:0; transform:translateY(25px);}
+  to{opacity:1;}
+}
+
+@keyframes titleFade{
+  to{opacity:1; transform:none;}
+}
+
+/* falling hearts */
+.heart{
+  position:fixed;
+  top:-20px;
+  color:#ff4d6d;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+    opacity:0.85;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <img src="uyanga.jpg">
+
+  <h1>Уянгад 💖</h1>
+
+  <p>Уянгаа,</p>
+
+  <p>
+    Энэхүү захиаг унших гэгээн өдрийн мэндийг хүргэе.
+    Уучлалтыг минь хүлээж авсанд гүнээ талархаад 
+    баршгүй байгаагаа хэлэх гэсэн юм.
+  </p>
+
+  <p>
+    Өнгөрсөн хугацаанд чамайг гомдоосон тэр мэдрэмж 
+    сэтгэлээс минь огт салаагүй юм шүү, 
+    Үгээр хэлхийн аргагүй мэдрэмж намайг өвтгөж 
+  </p>
+
+  <p>
+    Сүүлд над руу илгээсэн мэйлийг нь уншаад юу хийхээ ч ойлгохгүй
+    Тэнэг хүн шиг л болсон тухайн үед би ер нь ямар тэнэг зүйл хийж
+    Миний амьдралд маш их үнэ цэнтэй хүнийг гомдоосноо ойлгосон.
+  </p>
+
+  <p>
+    жинхэнэ хайр гэдэг нь нэгнээ ямар ч үед алдахгүй байх
+    Ямар ч үед нь хайрлаж халамжлах
+    Дутагдалтай талийн өөрт нь л хэлж засахад нь туслах 
+    Бусдаас өмөөрч хамгаалж хайрлаж нандигнах 
+    Нэгнийгээ алхам бүрд нь дэмжиж хамтдаа хөгжиж 
+    Нэгэнтэйгээ жаргал зовлон амьдралын сайхан муухайг хамтдаа туулахын нэр юм болов уу.
+  </p>
+
+  <p>
+    Чамаасаа би хүний итгэлт хань  
+    Үнэнч чанар , Хайрласан хайр нь хөрөхгүй гэдгийг  
+    Ямар ч үед ухаалга шийдвэр гарган гэдгийг  
+    Эмэгтэй хүний хатан ухаан эелдэг даруу занг нь олж харснаа ний нуугүй хэлмээр байна. 
+.
+  </p>
+
+  <p>
+    Намайг уучилж дахин нэг боломж олгосонд 
+    Tалархахын сацуу надад өгсөн итгэл сэтгэлийн
+    Насан туршдаа хариулж хайр халамжаар дутаахгүй 
+    Үргэлж эелдэг зөөлөн байж амьдралын жаргал зовлонг хамтдаа даван туулж 
+    Чинийхээ насан туршийн түшиг тулгуур болохоо амлаж байна. 
+  </p>
+
+  <p><b>Би чамд үнэхээр хайртай.</b></p>
+
+</div>
+
+
+  <script>
+const symbols = ["❤️","🙏","For you Уянга"];
+
+function createSymbol(){
+  const el = document.createElement("div");
+  el.className="heart";
+  
+  // random symbol
+  el.innerHTML = symbols[Math.floor(Math.random()*symbols.length)];
+
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = (14 + Math.random()*26) + "px";
+  el.style.animationDuration = (4 + Math.random()*4) + "s";
+
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),8000);
+}
+
+setInterval(createSymbol, 400);
+</script>
+
+</body>
+</html>
