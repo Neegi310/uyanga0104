@@ -13,7 +13,6 @@ body{
   justify-content:center;
   align-items:center;
   min-height:100vh;
-  cursor: pointer; /* Дэлгэцийн хаана ч дарж болохыг илтгэнэ */
 }
 
 /* card */
@@ -26,15 +25,6 @@ body{
   max-width:520px;
   max-height:85vh;
   overflow-y:auto;
-  animation:fade 1.8s ease;
-  transition:0.3s;
-  position: relative;
-  z-index: 10;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 25px 60px rgba(0,0,0,0.25);
 }
 
 /* single image */
@@ -52,12 +42,6 @@ h1{
   color:#e8436f;
   margin-bottom:25px;
   letter-spacing:1px;
-  animation:glow 2.5s infinite alternate;
-}
-
-@keyframes glow{
-  from{ text-shadow:0 0 5px #ff6b81;}
-  to{ text-shadow:0 0 18px #ff2d55;}
 }
 
 /* poem text */
@@ -81,15 +65,6 @@ h1{
   border-radius:14px;
   box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
-
-/* Дуу эхлүүлэх санамж бичиг (Жижигхэн текст) */
-.hint {
-  position: fixed;
-  bottom: 20px;
-  color: #e8436f;
-  font-size: 14px;
-  opacity: 0.7;
-}
 </style>
 </head>
 
@@ -100,9 +75,9 @@ h1{
 </audio>
 
 <div class="card">
-  <img src="./avatar.jpeg" class="top-img">
+  <img src="avatar.jpeg" class="top-img">
 
-  <h1>Уянга-д 💖</h1>
+  <h1>Уянгад 💖</h1>
 
   <p class="poem">
 Өнгөт орчлонгийн наран минь
@@ -131,4 +106,38 @@ h1{
 Надад итгэсэн чамдаа би хайртай.
   </p>
 
-  <div
+  <div class="bottom-images">
+    <img src="1.jpeg">
+    <img src="2.jpeg">
+  </div>
+</div>
+
+<script>
+// 1. Зүрх унах эффект
+const symbols = ["❤️","💕","For you Уянга","🌸"];
+function createSymbol(){
+  const el = document.createElement("div");
+  el.innerHTML = symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.position="fixed";
+  el.style.top="-30px";
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = (16 + Math.random()*20) + "px";
+  el.style.transition = "transform 10s linear, opacity 10s";
+  document.body.appendChild(el);
+  setTimeout(()=>{
+    el.style.transform = "translateY(110vh)";
+    el.style.opacity = "0.9";
+  },50);
+  setTimeout(()=>el.remove(),10000);
+}
+setInterval(createSymbol, 900);
+
+// 2. ДУУ ТОГЛУУЛАХ (Дэлгэц дээр нэг дарахад)
+document.addEventListener('click', function() {
+    var audio = document.getElementById("bgMusic");
+    audio.play();
+}, { once: true });
+</script>
+
+</body>
+</html>
