@@ -5,16 +5,6 @@
 <title>Уянга-д ❤️</title>
 
 <style>
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-  font-family:"Segoe UI", Arial, sans-serif;
-}
-
 /* card */
 .card{
   background:white;
@@ -26,6 +16,12 @@ body{
   max-height:85vh;
   overflow-y:auto;
   animation:fade 1.8s ease;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 25px 60px rgba(0,0,0,0.25);
 }
 
 /* image */
@@ -34,6 +30,7 @@ img{
   border-radius:16px;
   display:block;
   margin:0 auto 25px auto;
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
 /* title */
@@ -42,51 +39,13 @@ h1{
   color:#e8436f;
   margin-bottom:25px;
   letter-spacing:1px;
-  animation:titleFade 2.2s ease forwards;
+  animation:titleFade 2.2s ease forwards, glow 2.5s infinite alternate;
   opacity:0;
 }
 
-/* paragraphs */
-p{
-  font-size:18px;
-  color:#333;
-  line-height:1.9;
-  margin-bottom:18px;
-}
-
-/* signature */
-.signature{
-  text-align:right;
-  margin-top:30px;
-  font-weight:600;
-  color:#e8436f;
-  font-size:18px;
-}
-
-/* animations */
-@keyframes fade{
-  from{opacity:0; transform:translateY(25px);}
-  to{opacity:1;}
-}
-
-@keyframes titleFade{
-  to{opacity:1; transform:none;}
-}
-
-/* falling hearts */
-.heart{
-  position:fixed;
-  top:-20px;
-  color:#ff4d6d;
-  animation:fall linear forwards;
-  pointer-events:none;
-}
-
-@keyframes fall{
-  to{
-    transform:translateY(110vh);
-    opacity:0.85;
-  }
+@keyframes glow{
+  from{ text-shadow:0 0 5px #ff6b81;}
+  to{ text-shadow:0 0 18px #ff2d55;}
 }
 </style>
 </head>
@@ -153,6 +112,7 @@ setInterval(createSymbol, 400);
 </body>
 
 </html>
+
 
 
 
