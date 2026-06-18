@@ -1,144 +1,230 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="UTF-8">
-<title>Уянга-д ❤️</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Өнөөдөр Болзох урилга 🌸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent; /* Утсан дээр дарахад цэнхэр хүрээ гаргахгүй */
+        }
 
-<style>
-body{
-  margin:0;
-  font-family:sans-serif;
-  background:linear-gradient(135deg,#ffd1dc,#ffe6f0);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
-}
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6f2; /* Зөөлөн ягаан дэвсгэр */
+            overflow: hidden;
+            padding: 20px;
+        }
 
-/* card */
-.card{
-  background:white;
-  padding:45px 40px;
-  border-radius:22px;
-  text-align:left;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
-  max-width:520px;
-  max-height:85vh;
-  overflow-y:auto;
-}
+        /* Картны ерөнхий загвар (Утсанд зориулсан хэмжээ) */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(255, 102, 163, 0.15);
+            text-align: center;
+            width: 100%;
+            max-width: 340px;
+            position: relative;
+        }
 
-/* single image */
-.top-img{
-  width:240px;
-  border-radius:16px;
-  display:block;
-  margin:0 auto 25px auto;
-  box-shadow:0 10px 25px rgba(0,0,0,0.25);
-}
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
 
-/* title */
-h1{
-  text-align:center;
-  color:#e8436f;
-  margin-bottom:25px;
-  letter-spacing:1px;
-}
+        h2 {
+            color: #4a1525;
+            font-size: 20px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
 
-/* poem text */
-.poem{
-  white-space: pre-line;
-  font-size:18px;
-  line-height:1.9;
-  color:#333;
-}
+        /* Товчлууруудын контейнер */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            height: 60px;
+            margin-top: 10px;
+            padding: 0 10px;
+        }
 
-/* bottom 2 images */
-.bottom-images{
-  display:flex;
-  gap:15px;
-  margin-top:25px;
-  justify-content:center;
-}
+        button {
+            padding: 12px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
 
-.bottom-images img{
-  width:45%;
-  border-radius:14px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.25);
-}
-</style>
+        #yesBtn {
+            background-color: #ff66a3;
+            color: white;
+            z-index: 10; /* Тийм товч үргэлж дээр нь байна */
+        }
+
+        /* Үгүй товчлуур утсан дээр чөлөөтэй зугтах хэсэг */
+        #noBtn {
+            background-color: #e5cbd9;
+            color: #604d59;
+            position: absolute;
+            right: 10px; /* Эхлэх байрлал */
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.1) !important;
+            touch-action: none; /* Утсан дээр scroll хийхийг хориглоно */
+            z-index: 5;
+        }
+
+        /* 2-р хуудас: Хоолны сонголтууд */
+        .food-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .food-item {
+            background: #fff0f5;
+            padding: 15px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .food-item:active {
+            transform: scale(0.95);
+            background: #ffe6f2;
+            border-color: #ff66a3;
+        }
+
+        .food-item span {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .food-item p {
+            font-size: 13px;
+            color: #4a1525;
+            font-weight: 600;
+        }
+
+        /* Нуух ангилал */
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
-
 <body>
 
-<audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+    <div id="page1" class="card">
+        <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=400" alt="Cute" class="profile-img">
+        <h2>🌸 Салхилах уу хөөрхөнөө? 🌸</h2>
+        
+        <div class="btn-container" id="container">
+            <button id="yesBtn" onclick="nextPage()">ТИЙМ ♥</button>
+            <button id="noBtn">ҮГҮЙ ✖</button>
+        </div>
+    </div>
 
-<div class="card">
-  <img src="avatar.jpeg" class="top-img">
+    <div id="page2" class="card hidden">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" alt="Food" class="profile-img">
+        <h2>Yaaay! 🥰 Яг хоолоо идчихээд л салхилая хоолоо сонгоорой kiss kiss</h2>
+        
+        <div class="food-options">
+            <div class="food-item" onclick="selectFood('Бургер 🍔')">
+                <span>🍔</span>
+                <p>Бургер</p>
+            </div>
+            <div class="food-item" onclick="selectFood('Пицца 🍕')">
+                <span>🍕</span>
+                <p>Пицца</p>
+            </div>
+            <div class="food-item" onclick="selectFood('Жантай гоймон')">
+                <span>🍜</span>
+                <p>Жантай гоймон</p>
+            </div>
+            <div class="food-item" onclick="selectFood('Намайг')">
+                <span>👶</span>
+                <p>Намайг</p>
+            </div>
+        </div>
+    </div>
 
-  <h1>Уянгад 💖</h1>
+    <div id="page3" class="card hidden">
+        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Love" class="profile-img">
+        <h2>Ойлголооо! Тэгвэл удахгүй уулзацгаая хөөрхөнөө 💖</h2>
+        <p id="finalMessage" style="margin-top: 18px; color: #ff66a3; font-weight: bold; font-size: 16px;"></p>
+    </div>
 
-  <p class="poem">
-Өнгөт орчлонгийн наран минь
-Харанхуй ертөнцийн гэгээ минь 
-Үүр шөнийн саран минь
-Аниргүй ертөнцийн Уянга минь
-Энэрэнгүй хайрын чинь эзэн нь би байж
-Энэрэлт чамдаа хайрлагдахыг хүснэм
-Эмээж ичих зүйлгүйгээр
-Энгэрт чинь тэврүүлэхийг хүснэм
-Жигшиж намайг бүү бодоорой
-Тэнэг явснаа би чамдаа өчье
-Чамайгаа алдахаас хайран
-Хатан ухаанаар харж үзсэнд
-Гүнээ талархаад баршгүй нь
-Уучилж намайгаа өршөөгөөрэй
-Ухаар ч би чинь бичиж сууна 
-Амьдралын олон нугчаан дундаас 
-Хүний сайнтай нь учирснаа
-Хожим сүүлд нь ухаарчээ би
-Чамтайгаа учирсан минь хувь тавилан
-Амьдралдаа авч болох хамгаас том шагнал юм
-Сэтгэлд хурсан үйлсийг үргээх 
-Салхи нь чи минь л байгаасай
-Чам руу л гэх сэтгэлээ би яалтай 
-Надад итгэсэн чамдаа би хайртай.
-  </p>
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const container = document.getElementById('container');
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const page3 = document.getElementById('page3');
+        const finalMessage = document.getElementById('finalMessage');
 
-  <div class="bottom-images">
-    <img src="1.jpeg">
-    <img src="2.jpeg">
-  </div>
-</div>
+        // Утсан дээр хуруу хүрэх (touchstart) эсвэл дарах үед зугтах функц
+        function escapeButton(e) {
+            e.preventDefault(); // Товчны үндсэн үйлдлийг зогсооно
+            
+            // Карт дотор чөлөөтэй зугтах хязгаарыг тодорхойлно
+            // Утасны дэлгэц жижиг тул картнаасаа гаргахгүй байх нь чухал
+            const padding = 20;
+            const containerBounds = container.getBoundingClientRect();
+            const btnBounds = noBtn.getBoundingClientRect();
 
-<script>
-// 1. Зүрх унах эффект
-const symbols = ["❤️","💕","Уянга𝄞","🌸"];
-function createSymbol(){
-  const el = document.createElement("div");
-  el.innerHTML = symbols[Math.floor(Math.random()*symbols.length)];
-  el.style.position="fixed";
-  el.style.top="-30px";
-  el.style.left = Math.random()*100 + "vw";
-  el.style.fontSize = (16 + Math.random()*20) + "px";
-  el.style.transition = "transform 10s linear, opacity 10s";
-  document.body.appendChild(el);
-  setTimeout(()=>{
-    el.style.transform = "translateY(110vh)";
-    el.style.opacity = "0.9";
-  },50);
-  setTimeout(()=>el.remove(),10000);
-}
-setInterval(createSymbol, 900);
+            // Санамсаргүй шинэ байрлал бодох (Картны зүүн, баруун, дээд, доод тал руу үсрэнэ)
+            const maxX = containerBounds.width - btnBounds.width;
+            const maxY = 120; // Босоо чиглэлд үсрэх зай (дээшээ доошоо)
 
-// 2. ДУУ ТОГЛУУЛАХ (Дэлгэц дээр нэг дарахад)
-document.addEventListener('click', function() {
-    var audio = document.getElementById("bgMusic");
-    audio.play();
-}, { once: true });
-</script>
+            let randomX = Math.random() * maxX;
+            let randomY = (Math.random() * maxY) - (maxY / 2);
 
+            // "Тийм" товчлуур дээр давхцаж очихоос сэргийлэх логик
+            if (randomX < 100 && Math.abs(randomY) < 30) {
+                randomX += 120; // Хэрэв "Тийм" товчтой хэт ойртвол баруун тийш түлхэнэ
+            }
+
+            // Шинэ байрлалыг оноож өгөх
+            noBtn.style.right = 'auto'; // Эхний утгыг цуцална
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.transform = `translateY(${randomY}px)`;
+        }
+
+        // Гар утсанд зориулсан мэдрэгч үйл явдлууд
+        noBtn.addEventListener('touchstart', escapeButton);
+        noBtn.addEventListener('click', escapeButton);
+        // Компьютер дээр шалгах тохиолдолд:
+        noBtn.addEventListener('mouseover', escapeButton);
+
+        // ТИЙМ дарахад 2-р хуудас руу шилжих
+        function nextPage() {
+            page1.classList.add('hidden');
+            page2.classList.remove('hidden');
+        }
+
+        // Хоол сонгоход 3-р хуудас руу шилжих
+        function selectFood(foodName) {
+            page2.classList.add('hidden');
+            page3.classList.remove('hidden');
+            finalMessage.innerText = `Хоёулаа ${foodName} идэхээр товлолоо! ✨`;
+        }
+    </script>
 </body>
 </html>
-
